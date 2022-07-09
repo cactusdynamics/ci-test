@@ -10,3 +10,6 @@ jobs:
 
       - name: build in docker
         run: .github/run.sh
+
+      - name: build outside docker
+        run: .github/run-in-container.sh
