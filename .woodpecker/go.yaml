@@ -1,0 +1,14 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  - name: build
+    image: golang:1.25
+    commands:
+      - ./scripts/build-go.sh
+  - name: Run executable on Ubuntu
+    image: ubuntu:24.04
+    commands:
+      - ./go/citest
+
