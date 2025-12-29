@@ -1,0 +1,17 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  - name: build
+    image: ubuntu:24.04
+    environment:
+      ENABLE_CLANG_TIDY: "ON"
+    commands:
+      - apt-get update
+      - apt-get install -y build-essential cmake clang-tidy
+      - ./scripts/build-cpp.sh
+  - name: Run executable
+    image: ubuntu:24.04
+    commands:
+      - ./cpp/build/citest
